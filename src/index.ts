@@ -1,13 +1,14 @@
 import { ApolloServer } from '@apollo/server';
 import  { startStandaloneServer } from '@apollo/server/standalone';
+import axios from 'axios';
 
 const typeDefs = `#graphql
   
   type Coin {
-    coinType : String
-    description : String
-    salePrice: Int
-    purchasePrice: Int
+    coinType : String!
+    description : String!
+    salePrice: Int!
+    purchasePrice: Int!
   }
 
   type Query {
@@ -15,48 +16,52 @@ const typeDefs = `#graphql
   }
 `;
 
-const coins = [
-  {
-    coinType: 'USD',
-    description: 'dolar',
-    purchasePrice: 308,
-    salePrice: 312
-  },
-  {
-    coinType: 'EUR',
-    description: 'euro',
-    purchasePrice: 309,
-    salePrice: 313
-  },
-  {
-    coinType: 'CNY',
-    description: 'yuan',
-    purchasePrice: 310,
-    salePrice: 314
-  },
-  {
-    coinType: 'UYU',
-    description: 'peso uruguayo',
-    purchasePrice: 308,
-    salePrice: 312
-  },
-  {
-    coinType: 'BRL',
-    description: 'real brasileño',
-    purchasePrice: 308,
-    salePrice: 312
-  },
-  {
-    coinType: 'CLP',
-    description: 'peso chileno',
-    purchasePrice: 308,
-    salePrice: 312
-  },
-];
+// const coins = [
+//   {
+//     coinType: 'USD',
+//     description: 'dolar estadounidense',
+//     purchasePrice: 308,
+//     salePrice: 312
+//   },
+//   {
+//     coinType: 'EUR',
+//     description: 'euro',
+//     purchasePrice: 309,
+//     salePrice: 313
+//   },
+//   {
+//     coinType: 'CNY',
+//     description: 'yuan',
+//     purchasePrice: 310,
+//     salePrice: 314
+//   },
+//   {
+//     coinType: 'UYU',
+//     description: 'peso uruguayo',
+//     purchasePrice: 308,
+//     salePrice: 312
+//   },
+//   {
+//     coinType: 'BRL',
+//     description: 'real brasileño',
+//     purchasePrice: 308,
+//     salePrice: 312
+//   },
+//   {
+//     coinType: 'CLP',
+//     description: 'peso chileno',
+//     purchasePrice: 308,
+//     salePrice: 312
+//   },
+// ];
 
 const resolvers = {
   Query: {
-    coins: () => coins,
+    coins: async () => {
+      const { data } = await axios.get('http://localhost:4001/coins');
+      return data;
+      
+    }
   }
 }
 
