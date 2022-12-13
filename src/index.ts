@@ -16,45 +16,6 @@ const typeDefs = `#graphql
   }
 `;
 
-// const coins = [
-//   {
-//     coinType: 'USD',
-//     description: 'dolar estadounidense',
-//     purchasePrice: 308,
-//     salePrice: 312
-//   },
-//   {
-//     coinType: 'EUR',
-//     description: 'euro',
-//     purchasePrice: 309,
-//     salePrice: 313
-//   },
-//   {
-//     coinType: 'CNY',
-//     description: 'yuan',
-//     purchasePrice: 310,
-//     salePrice: 314
-//   },
-//   {
-//     coinType: 'UYU',
-//     description: 'peso uruguayo',
-//     purchasePrice: 308,
-//     salePrice: 312
-//   },
-//   {
-//     coinType: 'BRL',
-//     description: 'real brasileño',
-//     purchasePrice: 308,
-//     salePrice: 312
-//   },
-//   {
-//     coinType: 'CLP',
-//     description: 'peso chileno',
-//     purchasePrice: 308,
-//     salePrice: 312
-//   },
-// ];
-
 const resolvers = {
   Query: {
     coins: async () => {
